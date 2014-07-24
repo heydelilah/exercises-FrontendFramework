@@ -32,6 +32,95 @@ describe('Todos', function () {
 	});
 
 	describe('Todo Collection', function () {
+		it("should support explicit initialization with multiple todos", function() {
+			this.todos = new app.Todos([
+				{title: "Todo 1"},
+				{title: "Todo 2"}
+			]);
+			this.todos.length.should.equal(2);
+		})
+	});
 
+	describe('Todo View', function () {
+		beforeEach(function () {
+			this.todo = new app.Todo({
+				title: 'ming'
+			});
+
+			this.item = new app.TodoItem({model: this.todo});
+		});
+
+		it('call render() method, should return the view-model instance', function () {
+			this.item.render().should.equal(this.item);
+		});
+
+		it('should render as a list item', function () {
+			this.item.render().el.nodeName.should.equal('LI');
+		});
+
+		describe('Template', function () {
+			beforeEach(function () {
+				this.item.render();
+			});
+
+			it("should contain the todo title as text", function() {
+				this.item.$el.text().should.have.string("ming");
+			})
+			it("should include a label for the status", function() {
+				this.item.$el.find("label").should.have.length(1);
+			})
+			it("should include an <input> checkbox", function() {
+				this.item.$el.find("label>input[type='checkbox']").should.have.length(1);
+			})
+			it("should be clear by default (for 'pending' todos)", function() {
+				this.item.$el.find("label>input[type='checkbox']").is(":checked").should.be.false;
+			})
+			it("should be set for 'done' todos", function() {
+				this.todo.set("done", true);
+				this.item.render();
+				this.item.$el.find("label>input[type='checkbox']").is(":checked").should.be.true;
+			})
+			it("should protect against XSS attacks on the title", function() {
+				this.badTodo = new app.Todo({title: "<script>bad</script>"});
+				this.badItem = new app.TodoItem({model: this.badTodo});
+				this.badItem.render();
+				$("label",this.badItem.$el).html().replace(/<input .*>/,"").trim()
+					.should.equal("&lt;script&gt;bad&lt;/script&gt;");
+			})
+		});
+
+		describe("Model Interaction", function() {
+			it("should update model when checkbox clicked", function() {
+				$("<div>").attr("id","fixture").css("display","none").appendTo("body");
+				this.item.render();
+				$("#fixture").append(this.item.$el);
+				this.item.$el.find("input").click();
+				this.todo.get('done').should.be.true;
+				$("#fixture").remove();
+			})
+		})
+	});
+
+	describe('Todos View', function () {
+		beforeEach(function(){
+			this.todos = new app.Todos([
+				{title: "Todo 1"},
+				{title: "Todo 2"}
+			]);
+			this.list = new app.TodoItems({collection: this.todos});
+		});
+
+		it("render() should return the view object", function() {
+			this.list.render().should.equal(this.list);
+		});
+
+		it("should render as an unordered list", function() {
+			this.list.render().el.nodeName.should.equal("UL");
+		});
+
+		it("should include list items for all models in collection", function() {
+			this.list.render();
+			this.list.$el.find("li").should.have.length(2);
+		});
 	});
 });
