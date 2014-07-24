@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Unit Testing</title>
+</head>
+<body>
+	<!-- MochaJS -->
+	<link rel="stylesheet" href="libs/mocha/mocha.css">
+	<script src="libs/mocha/mocha.js"></script>
+	<script>mocha.setup('bdd');  </script>
+
+	<!-- ChaiJS -->
+	<script src="libs/chai.js"></script>
+	<script>chai.Should(); </script>
+
+	<!-- SinonJS -->
+	<script src="libs/sinon.js"></script>
+
+
+	<div id="mocha"></div>
+
+	<!-- src file -->
+	<script src="libs/jquery.js"></script>
+	<script src="libs/underscore.js"></script>
+	<script src="libs/backbone.js"></script>
+	<script src="app/todos.js"></script>
+
+	<!-- Spec file -->
+	<script src="tests/todoSpec.js "></script>
+
+	<script>
+		window.onload = function(){
+			mocha.run();
+		}
+	</script>
+
+
+
+</body>
+</html>
