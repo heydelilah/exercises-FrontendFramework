@@ -114,13 +114,45 @@ describe('Todos', function () {
 			this.list.render().should.equal(this.list);
 		});
 
-		it("should render as an unordered list", function() {
-			this.list.render().el.nodeName.should.equal("UL");
+		it("should render as an DIV which has the id #todo", function() {
+			this.list.render();
+			this.list.el.nodeName.should.equal("DIV");
+			this.list.$el.attr('id').should.equal('todo')
 		});
 
 		it("should include list items for all models in collection", function() {
 			this.list.render();
 			this.list.$el.find("li").should.have.length(2);
+		});
+	});
+
+	describe('Interaction', function () {
+		beforeEach(function () {
+			$("<div>").attr("id","fixture").css("display","block").appendTo("body");
+			this.todos = new app.Todos([
+				{title: "Todo 1"},
+				{title: "Todo 2"}
+			]);
+			this.list = new app.TodoItems({collection: this.todos});
+			this.list.render();
+			$("#fixture").append(this.list.$el);
+		});
+
+		afterEach(function () {
+			$("#fixture").remove();
+		});
+
+		it('should able to add new todo item', function () {
+			var input = $("#fixture header input");
+			input.val('faii');
+			input.trigger('keypress',true);
+			this.todos.pop().get('title').should.equal('faii');
+		});
+
+		it('should be change style when click the item', function () {
+			var item = $("#fixture .todoBody li");
+			item.find('input').click();
+			item.hasClass('delete').should.be.true;
 		});
 	});
 });

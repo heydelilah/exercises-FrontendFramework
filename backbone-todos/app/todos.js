@@ -33,21 +33,52 @@ app.TodoItem = Backbone.View.extend({
 	},
 	eventChangeStatus: function(){
 		this.model.toggleStatus()
+		this.$el.toggleClass('delete')
 	}
 })
 
 app.TodoItems = Backbone.View.extend({
-	tagName: "ul",
+	id: 'todo',
+	template: _.template(
+		 '<header class="todoHeader">'
+		+ 	'<h1>Todo</h1>'
+		+ 	'<input type="text" placeholder="What are you going to do?">'
+		+ '</header>'
+		+ '<section class="todoBody">'
+		+ 	'<ul></ul>'
+		+ '</section>'
+	),
+	events: {
+		'keypress header input': 'eventInputEnter'
+	},
+	initialize: function(){
+		var html = this.template();
+		this.$el.append(html);
+		var doms = this.doms = {};
+		doms.input = this.$el.find('header input');
+		doms.body = this.$el.find('section ul');
+
+
+		this.listenTo(this.collection, 'add', this.addOne);
+	},
 	render: function(){
 		this.addAll();
 		return this;
+	},
+	eventInputEnter: function(ev, testing){
+		if (ev.keyCode != 13 && !testing) return;
+		if (!this.doms.input.val()) return;
+
+		this.collection.add({title: this.doms.input.val()});
+
+		this.doms.input.val('');
 	},
 	addAll: function(){
 		this.collection.each(this.addOne, this);
 	},
 	addOne: function(todo){
 		var item = new app.TodoItem({model: todo});
-		this.$el.append(item.render().el);
+		this.doms.body.append(item.render().el);
 	}
 })
 

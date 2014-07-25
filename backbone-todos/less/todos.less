@@ -1,0 +1,34 @@
+body{
+	font-family: Verdana, Georgia;
+	padding: 20px;
+}
+
+.todo{
+	&Header{
+		h1{
+			font-size: 24px;
+			font-weight: normal;
+		}
+
+		input[type="text"]{
+			width: 200px;
+			padding: 3px;
+		}
+	}
+	&Body{
+		ul{
+			padding-left: 0;
+			list-style-type: none;
+			li{
+				input[type="checkbox"]{
+					margin-right: 5px;
+				}
+			}
+			li.delete{
+				color: #797979;
+				text-decoration: line-through;
+			}
+		}
+
+	}
+}
