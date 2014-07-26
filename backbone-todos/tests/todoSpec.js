@@ -150,9 +150,74 @@ describe('Todos', function () {
 		});
 
 		it('should be change style when click the item', function () {
-			var item = $("#fixture .todoBody li");
+			var item = $("#fixture .todoBody label");
 			item.find('input').click();
 			item.hasClass('delete').should.be.true;
 		});
 	});
+
+	describe('Cache datas', function () {
+		beforeEach(function () {
+			$("<div>").attr("id","fixture").css("display","block").appendTo("body");
+			this.todos = new app.Todos([
+				{title: "Todo 1"},
+				{title: "Todo 2"}
+			]);
+			this.list = new app.TodoItems({collection: this.todos});
+			this.list.render();
+			$("#fixture").append(this.list.$el);
+		});
+
+		afterEach(function () {
+			$("#fixture").remove();
+		});
+		it('should able to cache datas when init', function () {
+			this.list.data.length.should.equal(2);
+		});
+		it('should able to cache datas when after added a new item', function () {
+			var input = $("#fixture header input");
+			input.val('faii');
+			input.trigger('keypress',true);
+			this.list.data.length.should.equal(3);
+		});
+	});
+
+	describe('Filter Items', function () {
+		beforeEach(function () {
+			$("<div>").attr("id","fixture").css("display","block").appendTo("body");
+			this.todos = new app.Todos([
+				{title: "It is done", done: true},
+				{title: "It is doing 1", done: false},
+				{title: "It is doing 2", done: false}
+			]);
+			this.list = new app.TodoItems({collection: this.todos});
+			this.list.render();
+			$("#fixture").append(this.list.$el);
+		});
+
+		afterEach(function () {
+			$("#fixture").remove();
+		});
+		it('should able to cache the datas', function () {
+			this.list.data.length.should.equal(3)
+		});
+
+		it('should filter the undone item', function () {
+			var label = $('#fixture .todoFilter span[data-type="undone"]');
+			label.click();
+			var results = this.todos.toJSON();
+			results.length.should.equal(2);
+			results[0].title.should.equal('It is doing 1');
+			results[0].done.should.be.false;
+		});
+		it('should filter the done item', function () {
+			var label = $('#fixture .todoFilter span[data-type="done"]');
+			label.click();
+			var results = this.todos.toJSON();
+			results.length.should.equal(1);
+			results[0].title.should.equal('It is done');
+			results[0].done.should.be.true;
+		});
+	});
+
 });

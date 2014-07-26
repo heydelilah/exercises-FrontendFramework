@@ -1,18 +1,25 @@
 body{
-	font-family: Verdana, Georgia;
+	font-family: Georgia;
 	padding: 20px;
 }
 
 .todo{
 	&Header{
+		margin-bottom: 10px;
 		h1{
 			font-size: 24px;
+			color: #428BCA;
 			font-weight: normal;
 		}
 
 		input[type="text"]{
-			width: 200px;
-			padding: 3px;
+			width: 250px;
+			padding: 5px;
+		}
+	}
+	&Filter{
+		span{
+			cursor: pointer;
 		}
 	}
 	&Body{
@@ -20,11 +27,14 @@ body{
 			padding-left: 0;
 			list-style-type: none;
 			li{
+				color: #333;
+				padding: 3px 0px;
+
 				input[type="checkbox"]{
 					margin-right: 5px;
 				}
 			}
-			li.delete{
+			.delete{
 				color: #797979;
 				text-decoration: line-through;
 			}
@@ -32,3 +42,56 @@ body{
 
 	}
 }
+
+
+/** ----- Bootstrap ----- **/
+.btn {
+	display: inline-block;
+	padding: 6px 12px;
+	margin-bottom: 0;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 1.42857143;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	background-image: none;
+	border: 1px solid rgba(0, 0, 0, 0);
+	border-radius: 4px;
+}
+
+.btn-default {
+	color: #333;
+	background-color: #FFF;
+	border-color: #CCC;
+}
+
+
+.label {
+	display: inline;
+	padding: .2em .6em .3em;
+	font-size: 75%;
+	font-weight: 700;
+	line-height: 1;
+	color: #FFF;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: baseline;
+	border-radius: .25em;
+}
+.label-default {
+	background-color: #777;
+}
+.label-info {
+	background-color: #5BC0DE;
+}
+.label-primary {
+	background-color: #428BCA;
+}
+
+/** ----- Bootstrap ----- **/
