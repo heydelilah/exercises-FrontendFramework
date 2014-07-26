@@ -18,3 +18,7 @@ Some exercises demo.
 ### References & Resources
 - https://github.com/sathomas/jsunittest -by Stephen A Thomas
 - http://documentcloud.github.io/backbone/docs/todos.html -by Jérôme Gravel-Niquet
+
+###  Live demo:
+- Demo: http://heydelilah.github.io/exercises-FrontendFramework/backbone-todos/index.html
+- Unit testing: http://heydelilah.github.io/exercises-FrontendFramework/backbone-todos/test.html

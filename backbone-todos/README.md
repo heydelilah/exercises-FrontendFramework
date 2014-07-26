@@ -10,9 +10,6 @@
 - https://github.com/sathomas/jsunittest -by Stephen A Thomas
 - http://documentcloud.github.io/backbone/docs/todos.html -by Jérôme Gravel-Niquet
 
-
-complete
-title
-auto update to server
-
-use backbone pattern
+###  Live demo:
+- Demo: http://heydelilah.github.io/exercises-FrontendFramework/backbone-todos/index.html
+- Unit testing: http://heydelilah.github.io/exercises-FrontendFramework/backbone-todos/test.html
