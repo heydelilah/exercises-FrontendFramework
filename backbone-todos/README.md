@@ -9,10 +9,3 @@
 ### References & Resources
 - https://github.com/sathomas/jsunittest -by Stephen A Thomas
 - http://documentcloud.github.io/backbone/docs/todos.html -by Jérôme Gravel-Niquet
-
-
-complete
-title
-auto update to server
-
-use backbone pattern
