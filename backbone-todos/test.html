@@ -21,11 +21,14 @@
 
 	<div id="mocha"></div>
 
+	<!-- coverage report -->
+	<script src="libs/blanket.min.js" data-cover-adapter="libs/mocha-blanket.js"></script>
+
 	<!-- src file -->
 	<script src="libs/jquery.js"></script>
 	<script src="libs/underscore.js"></script>
 	<script src="libs/backbone.js"></script>
-	<script src="app/todos.js"></script>
+	<script src="app/todos.js" data-cover></script>
 
 	<!-- Spec file -->
 	<script src="tests/todoSpec.js "></script>

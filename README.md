@@ -3,17 +3,16 @@ exercises-FrontendFramework
 
 Some exercises demo.
 
-
 1. Backbone -todos
 =========================
 
 ### About
-- a simple Todo which can be add item, change status, delet item and so on.
-
+- A simple Todos which is able to add items, delete items and filter items.
 
 ### Tech Points
-- Unit Testing -mocha, chai, sinon
 - BackboneJS
+- Unit Testing: mocha, chai, sinon
+- Code coverage report: blanketJS
 
 ### References & Resources
 - https://github.com/sathomas/jsunittest -by Stephen A Thomas

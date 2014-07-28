@@ -171,10 +171,10 @@ describe('Todos', function () {
 		afterEach(function () {
 			$("#fixture").remove();
 		});
-		it('should able to cache datas when init', function () {
+		it('should support cache datas when init', function () {
 			this.list.data.length.should.equal(2);
 		});
-		it('should able to cache datas when after added a new item', function () {
+		it('should support cache datas when after added a new item', function () {
 			var input = $("#fixture header input");
 			input.val('faii');
 			input.trigger('keypress',true);
@@ -198,11 +198,8 @@ describe('Todos', function () {
 		afterEach(function () {
 			$("#fixture").remove();
 		});
-		it('should able to cache the datas', function () {
-			this.list.data.length.should.equal(3)
-		});
 
-		it('should filter the undone item', function () {
+		it('should support filter the undone item', function () {
 			var label = $('#fixture .todoFilter span[data-type="undone"]');
 			label.click();
 			var results = this.todos.toJSON();
@@ -210,11 +207,21 @@ describe('Todos', function () {
 			results[0].title.should.equal('It is doing 1');
 			results[0].done.should.be.false;
 		});
-		it('should filter the done item', function () {
+		it('should support filter the done item', function () {
 			var label = $('#fixture .todoFilter span[data-type="done"]');
 			label.click();
 			var results = this.todos.toJSON();
 			results.length.should.equal(1);
+			results[0].title.should.equal('It is done');
+			results[0].done.should.be.true;
+		});
+		it('should support recover to the all item', function () {
+			var done = $('#fixture .todoFilter span[data-type="done"]');
+			done.click();
+			var all = $('#fixture .todoFilter span[data-type="all"]');
+			all.click();
+			var results = this.todos.toJSON();
+			results.length.should.equal(3);
 			results[0].title.should.equal('It is done');
 			results[0].done.should.be.true;
 		});
