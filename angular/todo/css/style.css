@@ -1,0 +1,23 @@
+.Todo {
+  margin: 0 auto;
+  width: 900px;
+}
+.Todo-info {
+  padding: 10px 0;
+}
+.Todo-info .label {
+  cursor: pointer;
+}
+.Todo-info .label-info {
+  cursor: default;
+}
+.Todo-info .label-info:hover {
+  color: #fff;
+}
+.Todo-main li:hover {
+  color: #3a87ad;
+}
+.Todo-main .remove {
+  text-decoration: line-through;
+  color: grey;
+}

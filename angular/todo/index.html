@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+	<meta charset="UTF-8">
+	<title>TodoList in Angular</title>
+	<link rel="stylesheet" href="../libs/bootstrap.css">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body ng-app="todoApp">
+	<script src="../libs/angular.min.js"></script>
+	<script src="js/todo.js"></script>
+
+	<div ng-controller="todoController as todo" class="Todo">
+		
+		<!-- header -->
+		<h3>Todo List</h3>
+
+		<!-- info -->
+		<div class="Todo-info container">
+			<!-- amount -->
+			<div class="pull-left">
+				<span>The amount of {{todo.type}} item is : {{todo.getAmount()}}  </span>
+			</div>
+			
+			<!-- filter -->
+			<div class="filter pull-right">
+				<span class="label span1 text-center " ng-class="{'label-info': todo.type == 'todo'}" ng-click="todo.isTodo()">
+					Todo
+				</span>
+				<span class="label span1 text-center" ng-class="{'label-info': todo.type == 'done'}" ng-model="isDone" ng-click="todo.isDone()">
+					Done
+				</span>
+				<span class="label span1 text-center" ng-class="{'label-info': todo.type == 'all'}" ng-model="isAll" ng-click="todo.isAll()">
+					All
+				</span>
+			</div>
+		</div>
+
+		<!-- genarator -->
+		<form class="Todo-add form-inline">
+			<input type="text" placeholder="What do you want to do?" ng-keypress="todo.eventKeypress($event)" ng-model="todo.newTodo">
+			<button class="btn" ng-click="todo.eventAdd()"><i class="icon-plus"></i>Add</button>
+		</form>	
+
+
+		<!-- display -->
+		<ul class="Todo-main unstyled">
+			<li ng-repeat="item in todo.currentItems">
+				<label ng-class="{remove: item.done}">
+					<input type="checkbox" ng-model="item.done">
+					{{item.title}}
+				</label>
+			</li>
+		</ul>
+
+	</div>
+
+	
+
+</body>
+</html>
