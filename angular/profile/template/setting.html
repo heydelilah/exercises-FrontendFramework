@@ -1,0 +1,46 @@
+
+
+	<form class="setting form-horizontal">
+
+		<h3>Profile</h3>
+		
+		<div class="control-group">
+			<label class="control-label"> Name:</label>
+			<input type="text" ng-model="info.name">
+		</div>
+
+		<div>
+			<label> Sex:</label>
+			<label>
+				<input type="radio" ng-model="info.gril">
+				Gril
+			</label>
+			<label>
+				<input type="radio" ng-model="info.boy">
+				Boy
+			</label>
+
+		</div>
+
+		<div>
+			<label> Country:</label>
+			<input type="text" ng-model="info.country">
+		</div>
+
+		<div>
+			<label> Hobby:</label>
+			<textarea ng-value="info.hobby"></textarea>
+		</div>
+		
+	</form>
+
+	<div class="preview">
+		<h3>Preview</h3>
+		<div>Hi, I am {{info.name}}. </div>
+		<div>I am come from {{info.country}}. </div>
+		<div>I love {{info.hobby}}. </div>
+		<div>Nice to meet you! ^_^
+	</div>
+
+
+
