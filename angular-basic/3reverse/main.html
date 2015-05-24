@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Reverse</title>
+
+	<link rel="stylesheet" href="../libs/bootstrap.css">
+
+</head>
+
+<body ng-app="Reverse">
+
+	<script src="../libs/angular.min.js"></script>
+	<script src="app.js"></script>
+
+	
+	<div class="container">
+		<h3>反转单词</h3>
+
+		<!-- 输入区 -->
+		<div ng-controller="MessageCtrl as message">
+			<div>输入：</div>
+			<input type="text" placeholder="请输入要反转的单词" ng-model="message.data.words">
+		</div>
+
+		<!-- 展示区 -->
+		<div ng-controller="BoardCtrl as board">
+			<div>输出：</div>
+			<div>{{board.reverse()}}</div>
+		</div>	
+	</div>
+
+</body>
+</html>

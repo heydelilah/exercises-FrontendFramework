@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ContactsApp">
+<head>
+	<meta charset="UTF-8">
+	<title>contact</title>
+
+	<!-- angular 基本路径设置 -->
+	<base href="/" >
+	
+	<!-- 引进bootswatch中的css样式 -->
+	<link rel="stylesheet" href="src/bootstrap.min.css">
+	<link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body>
+
+	<div class="container">
+		<h1>Contacts</h1>
+		
+		<div ng-view>
+			
+		</div>
+	</div>
+
+
+	
+	<!-- 引进bootstap js -->
+	<script src="libs/jquery/dist/jquery.min.js"></script>
+	<script src="libs/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="libs/angular/angular.js"></script>
+	<script src="libs/angular-route/angular-route.min.js"></script>
+	<script src="libs/angular-resource/angular-resource.min.js"></script>
+	<script src="src/app.js"></script>
+	<script src="src/controller.js"></script>
+	<script src="src/factories.js"></script>
+	
+</body>
+</html>
