@@ -1,0 +1,22 @@
+<h2>
+	{{record.firstName[0]}}
+	{{record.lastName[0]}}
+</h2>
+
+<form class='form-horizontal' name="editForm">
+	
+	<form-field record="record" field="firstName" required></form-field>
+	<form-field record="record" field="lastName" required></form-field>
+	<form-field record="record" ng-repeat="(k, v) in record | fieldFilter: 'lastName' |fieldFilter: 'firstName' |fieldFilter:'id' |fieldFilter: 'userId' " field="{{k}}" required></form-field>
+
+
+	<form-field record="record" ng-repeat="(k, v) in types" field="{{k}}"></form-field>
+
+	<new-field record="record"></new-field>
+
+	<div class="row form-group">
+		<div class="col-sm-offset-2">
+			<button class="btn btn-danger" ng-click="remove()">Delete</button>
+		</div>
+	</div>
+</form>

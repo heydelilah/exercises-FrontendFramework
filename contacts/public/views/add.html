@@ -10,6 +10,9 @@
 
 	<form-field ng-repeat="(k, v) in record | fieldFilter: 'firstName'| fieldFilter: 'lastName'" record="record" field="{{k}}" live="false"></form-field>
 
+	<!-- 新增项目 -->
+	<new-field record="record" live="false"></new-field>
+
 
 
 

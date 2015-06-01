@@ -1,7 +1,19 @@
 angular.module('ContactsApp')
 	.value('FieldTypes', {
-		'text': ['Text', 'should be text']
+		text: ['Text', 'should be text'],
+		email: ['Email', 'should be an email address'],
+		number: ['Number', 'should be a number'],
+		date: ['Date', 'should be a date'],
+		datetime: ['Datetime', 'should be a datetime'],
+		time: ['Time', 'should be a time'],
+		month: ['Month', 'should be a month'],
+		week: ['Week', 'should be a week'],
+		url: ['URL', 'should be a URL'],
+		tel: ['Phone Number', 'should be a phone number'],
+		color: ['Color', 'should be a color']
+
 	})
+
 	.directive('formField', function($timeout, FieldTypes){
 		return {
 			restrict: 'EA', // 类型
@@ -31,7 +43,10 @@ angular.module('ContactsApp')
 
 				$scope.blurUpdate = function(){
 					if($scope.live !== 'false'){
+						// BUG: 编辑时候得快速编写，不然会更新失败然后被返回的null覆盖；
+						// 有error时候，应该禁用更新
 						$scope.record.$update(function(updateRecord){
+							console.log(updateRecord)
 							$scope.record = updateRecord;
 						});	
 					}
@@ -41,6 +56,53 @@ angular.module('ContactsApp')
 				$scope.update = function(){
 					$timeout.cancel(timeoutId);
 					timeoutId = $timeout($scope.blurUpdate, 1000);
+				}
+			}
+		}
+	})
+
+	.directive('newField', function($filter, FieldTypes){
+		return {
+			restrict: 'EA',
+			templateUrl: 'views/newField.html',
+			replace: true,
+			scope: {
+				record: '=',
+				live: '@'
+			},
+			// @疑问：没搞懂？
+			require: '^form',
+			link: function($scope, element, attr, form){
+				$scope.types = FieldTypes;
+
+				$scope.field = {};
+
+				$scope.show = function(type){
+					$scope.field.type = type;
+					$scope.display = true;
+				}
+
+				$scope.remove = function(){
+					$scope.field = {};
+					$scope.display = false;
+				}
+
+				$scope.add = function(){
+					// 合法性验证
+					if(form.newField.$valid){
+						var name = $filter('camelCase')($scope.field.name);
+						$scope.record[name] = [$scope.field.value, $scope.field.type];
+						$scope.remove();
+
+						if($scope.live !== 'false'){
+							// 更新数据库
+							$scope.record.$update(function(updatedRecord){
+								$scope.record = updatedRecord;
+							});
+						}
+
+					}
+
 				}
 			}
 		}

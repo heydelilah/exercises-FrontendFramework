@@ -8,13 +8,6 @@ var db = new Bourne('data.json');
 // 返回的是 rounter对象
 var router = express.Router();
 
-// 写一个小的自定义中间件，为了做权限验证
-router.use(function(req, res, next){
-	if(!req.user){
-		req.user = {id : 1};
-	}
-	next();
-});
 
 // 注册中间件bodyParser
 router.use(bodyParser.json());
@@ -24,8 +17,8 @@ router.use(bodyParser.json());
 router.route('/contact')
 	// 获取全部记录
 	.get(function(req, res){
-		// 由于id可能是字符串，要先转换为整型类型
-		db.find(function(err, data){
+        // 由于id可能是字符串，要先转换为整型类型
+        db.find({'userId': parseInt(req.user.id, 10)}, function(err, data){
 			res.json(data)
 		});
 	})
@@ -44,6 +37,7 @@ router
 	.param('id', function(req, res, next){
 		// 有可能是post形式，也有可能是get形式
 		req.dbQuery = {'id': parseInt(req.params.id, 10)};
+		next();
 	})
 
 	.route('/contact/:id')

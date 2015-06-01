@@ -1,7 +1,4 @@
 angular.module('ContactsApp', ['ngRoute', 'ngResource', 'ngMessages'])
-	// .run(function($rootScope){
-	// 	$rootScope.message = "helo";
-	// });
 	
 	.config(function($routeProvider, $locationProvider){
 		$routeProvider
@@ -15,8 +12,28 @@ angular.module('ContactsApp', ['ngRoute', 'ngResource', 'ngMessages'])
 				controller: 'AddController',
 				templateUrl: 'views/add.html'
 			})
+			// 编辑
+			.when('/contacts/:id', {
+				controller: 'EditController',
+				templateUrl: 'views/edit.html'
+			})
+			// 设置
+			.when('/setting', {
+				controller: 'SettingController',
+				templateUrl: 'views/setting.html'
+			})
+			.otherwise({
+				redirectTo: '/contacts'   
+			});
 
 		// ? 和hash相关
 		$locationProvider.html5Mode(true);
 
+	})
+	// 设置全局变量
+	.value('options', {})
+	.run(function(options, Fields){
+		Fields.get().success(function(data){
+			options.display_field = data;
+		});
 	})

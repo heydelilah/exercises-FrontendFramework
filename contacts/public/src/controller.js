@@ -1,13 +1,15 @@
 angular.module('ContactsApp')
-	.controller('ListController', function($scope, Contact, $location){
+	.controller('ListController', function($scope, $rootScope, Contact, $location, options){
+		$rootScope.PAGE = 'all';
 
 		// 疑问： 这里的query对应什么？
 		// 获取了全部的记录	
 		// 'query':  {method:'GET', isArray:true}
 		$scope.contacts = Contact.query();
 
+		console.log(options)
 		// 列显示域
-		$scope.fields = ['firstName', 'lastName'];
+		$scope.fields = ['firstName', 'lastName'].concat(options.display_field);
 
 		// 排序
 		$scope.sort = function(field){
@@ -22,7 +24,9 @@ angular.module('ContactsApp')
 		}
 	})
 
-	.controller('AddController', function($scope, Contact, $location){
+	.controller('AddController', function($scope, $rootScope, Contact, $location){
+		$rootScope.PAGE = 'add';
+
 		// 新建一条记录
 		$scope.record = new Contact({
 			firstName: ['', 'text'],
@@ -49,3 +53,53 @@ angular.module('ContactsApp')
 			}
 		}
 	})
+
+	.controller('EditController', function($scope, $rootScope, Contact, $location, $routeParams){
+		$rootScope.PAGE = 'edit';
+
+		var param = parseInt($routeParams.id, 10);
+
+		// 不是异步的吗？
+		$scope.record = Contact.get({id: param});
+
+
+		$scope.remove = function(){
+			$scope.record.$delete();
+			$location.url('/contacts');
+		}
+	})
+
+	.controller('SettingController', function($scope, $rootScope, options, Fields){
+		$rootScope.PAGE = 'setting';
+
+		$scope.allFields = [];
+
+		$scope.fields = options.display_field;
+
+		Fields.headers().then(function(data){
+			$scope.allFields = data;
+		});
+
+		$scope.toggle = function(field){
+			var i = options.display_field.indexOf(field);
+			if(i<=-1){
+				options.display_field.push(field);
+			}else{
+				options.display_field.splice(i, 1);
+			}
+
+			Fields.set(options.display_field);
+		}
+	})
+
+
+
+
+
+
+
+
+
+
+
+

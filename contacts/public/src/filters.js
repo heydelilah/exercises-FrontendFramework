@@ -1,10 +1,21 @@
 angular.module('ContactsApp')
 	.filter('labelCase', function(){
 		return function(name){
+			// firstName -> First Name
 			name = name.replace(/([A-Z])/g, ' $1');
 			return name[0].toUpperCase()+name.slice(1);
 		}
 	})
+	.filter('camelCase', function(){
+		return function(name){
+			// First Name -> firstName
+			console.log(name)
+			return name.toLowerCase().replace(/ (\w)/g, function(match, letter){
+				return letter.toUpperCase();
+			})
+		}
+	})
+
 	.filter('fieldFilter', function(){
 		return function(data, name){
 			var result = {};
