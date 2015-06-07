@@ -21,3 +21,13 @@ Some exercises demo.
 ###  Live demo:
 - Demo: http://heydelilah.github.io/exercises-FrontendFramework/backbone-todos/index.html
 - Unit testing: http://heydelilah.github.io/exercises-FrontendFramework/backbone-todos/test.html
+
+2. Angular
+=========================
+
+3. ReactJS
+=========================
+
+### References & Resources
+
+- [tuts+ 视频教程](https://code.tutsplus.com/courses/getting-started-with-reactjs/lessons/jsx-vs-reactdom)

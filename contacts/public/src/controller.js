@@ -7,7 +7,6 @@ angular.module('ContactsApp')
 		// 'query':  {method:'GET', isArray:true}
 		$scope.contacts = Contact.query();
 
-		console.log(options)
 		// 列显示域
 		$scope.fields = ['firstName', 'lastName'].concat(options.display_field);
 

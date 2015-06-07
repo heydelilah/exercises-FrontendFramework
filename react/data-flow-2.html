@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Learn ReactJS</title>
+</head>
+<body>
+  <div id="demo"></div>
+
+  <script src="libs/react-with-addons.js"></script>
+  <script src="libs/JSXTransformer.js"></script>
+
+  <script type="text/jsx">
+
+
+    var App = React.createClass({
+      mixins: [React.addons.LinkedStateMixin],
+
+      getInitialState: function() {
+        return {
+          payment: 0,
+          payment2: 0
+        }
+      },
+
+      render: function() {
+        var total = parseInt(this.state.payment, 10) + parseInt(this.state.payment2, 10);
+        return (
+          <div>
+            <Payment valueLink={this.linkState('payment')} />
+            <Payment valueLink={this.linkState('payment2')} />
+            { total }
+          </div>
+        );
+      }
+
+    });
+
+    var Payment = React.createClass({
+
+      render: function() {
+        var props = this.props;
+
+        // https://gist.github.com/sebmarkbage/07bbe37bc42b6d4aef81
+        return <input type="text" {...props} />
+      }
+
+    });
+
+    React.render(
+      <App />,
+      document.getElementById('demo')
+    );
+
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Learn ReactJS</title>
+</head>
+<body>
+	<div id="demo"></div>
+
+	<script src="libs/react.js"></script>
+	<script src="libs/JSXTransformer.js"></script>
+
+	<script type="text/jsx">
+		
+		var App = React.createClass({
+			getInitialState:function() {
+				return {
+					payment1: 0,
+					payment2: 0
+				}
+			},
+			render: function(){
+				var state = this.state;
+				var total = parseInt(state.payment1, 10) + parseInt(state.payment2, 10);
+
+				return (
+					<div>
+						<Payment data={this.state.payment1} onChange={ this.handleInputChange1 } />
+						<Payment data={this.state.payment2} onChange={ this.handleInputChange2 } />
+						{total}
+					</div>
+				);
+			},
+			handleInputChange1: function(e){
+				this.setState({payment1: e.target.value})
+			},
+			handleInputChange2: function(e){
+				this.setState({payment2: e.target.value})
+			}
+
+		});
+
+		var Payment = React.createClass({
+			handleInputChange: function(val){
+				this.props.onChange(val);
+			},
+			render: function(){
+
+				return (
+					<input type="text" value={this.props.data} onChange={ this.handleInputChange } />
+				);
+			}
+		});
+
+		var app = React.render(
+			<App />,
+			document.getElementById('demo')
+		)
+
+
+
+	</script>
+
+
+	
+</body>
+</html>
