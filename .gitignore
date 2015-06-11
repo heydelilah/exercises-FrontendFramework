@@ -1,1 +1,5 @@
 .DS_Store
+node_modules
+*/node_modeles
+bower_components
+*/bowser_components
