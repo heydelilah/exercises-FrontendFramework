@@ -1,0 +1,33 @@
+.fl{
+	float: left;
+}
+
+.fr{
+	float: right;
+}
+
+.clear{
+	clear: both;
+}
+.block{
+	overflow: hidden;
+}
+
+.arrowCon{
+	background-color: #337ab7;;
+	padding: 4px;
+	margin-left: 3px;
+	cursor: pointer;
+	color: #fff;
+}
+
+.text-center{
+	text-align: center;
+}
+.text-right{
+	text-align: right;
+}
+
+.color-grey{
+	color: #999;
+}
