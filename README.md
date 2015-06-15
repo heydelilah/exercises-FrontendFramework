@@ -3,9 +3,11 @@ exercises-FrontendFramework
 
 关于前端框架的一些练习项目。
 
-1. Angular
+1. Angular -Contacts
 =========================
 201505
+
+![angular-contacts](imgs/angular-contacts.png)
 
 ### 描述
 
@@ -15,9 +17,11 @@ exercises-FrontendFramework
 	
 - [tutsplus - Building a web app from scratch with angular](https://code.tutsplus.com/courses/building-a-web-app-from-scratch-with-angularjs)
 
-2. ReactJS
+2. ReactJS －Voting
 =========================
 201506
+
+![react-voting](imgs/react-voting.png)
 
 ## 描述
 
@@ -75,7 +79,7 @@ exercises-FrontendFramework
 
 - [tutsplus - Getting started with reactjs](https://code.tutsplus.com/courses/getting-started-with-reactjs/lessons/jsx-vs-reactdom)
 
-3. Backbone -todos
+3. Backbone -Todos
 =========================
 
 201407
