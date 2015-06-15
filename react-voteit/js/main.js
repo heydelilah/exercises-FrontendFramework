@@ -3,19 +3,43 @@ var React 		= require('react'),
 	FeedForm 	= require('./component/feedform'),
 	FeedList 	= require('./component/feedlist'),
 	_			= require('lodash'),
-	// Firebase 	= require('firebase');
+	Firebase 	= require('firebase');
 
 
 var App = React.createClass({
-	getInitialState:function() {
-		// var ref = new Firebase('https://react-vote.firebaseio.com/');
+	loadData: function(){
+		var ref = new Firebase('https://react-vote.firebaseio.com/');
 
+		var self = this;
 		
+		ref.on('value', function(snap){
+			var items = [];
+
+			snap.forEach(function(snapshot){
+
+				var value = snapshot.val();
+				value.id = snapshot.key();
+
+				items.push(value);
+			})
+
+			var sorted = _.sortBy(items, function(n){
+				return -n.number;
+			});
+			
+			self.setState({
+				'items': sorted,
+				'isShowBtn': false
+			})
+		});
+
+	},
+	componentDidMount: function(){
+		this.loadData();
+	},
+	getInitialState:function() {
 		return {
-			items: [
-				{id:1, title:'heydelila', content:'i am form china', number: 24},
-				{id:2, title:'ice', content:'where are you', number: 14}
-			],
+			items: [],
 			isShowBtn: false
 		}
 	},
@@ -40,29 +64,13 @@ var App = React.createClass({
 		})
 	},
 	eventNewItem: function(data){
-		var updatedData = this.state.items.concat([data]);
-		updatedData.id = updatedData.length;
-		
-		this.setState({
-			items: updatedData,
-			isShowBtn: false
-		})
+		var ref = new Firebase('https://react-vote.firebaseio.com/');
+		ref.push(data);
 	},
 	eventVote: function(result){
-		var items = this.state.items.slice();
-
-		var index = _.findIndex(items, {id: result.id});
-		var data = items[index];
-
-		result.title = data.title;
-		result.content = data.content;
-
-		items = _.pull(items, data);
-		items.push(result);
-
-		this.setState({
-			items: items
-		})
+		var ref = new Firebase('https://react-vote.firebaseio.com/');
+		ref = ref.child(result.id);
+		ref.update(result);
 	}
 })
 

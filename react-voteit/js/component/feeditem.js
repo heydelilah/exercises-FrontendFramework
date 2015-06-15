@@ -11,13 +11,13 @@ var FeedItem = React.createClass({
 
 		var data = this.props.data;
 
-		var voteStyle = data.number > 0 ? 'badge badge-success' : 'badge badge-danger';
+		var voteStyle = data.number >= 0 ? 'badge badge-success' : 'badge badge-danger';
 
 		return (
 			<li className="list-group-item container"> 
 				<div className="fl">
 					<h4> {data.title} </h4>
-					<div className="color-grey"> {data.content} </div>
+					<div className="color-grey"> {data.desc} </div>
 				</div>
 
 				<div className="fr text-right">

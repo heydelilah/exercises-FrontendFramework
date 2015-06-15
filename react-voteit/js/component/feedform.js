@@ -33,7 +33,8 @@ var FeedForm = React.createClass({
 
 		var newItem = {
 			'title': refs.title.getDOMNode().value,
-			'desc': refs.desc.getDOMNode().value
+			'desc': refs.desc.getDOMNode().value,
+			'number': 0
 		};
 
 		refs.form.getDOMNode().reset();

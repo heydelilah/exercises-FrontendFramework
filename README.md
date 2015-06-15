@@ -1,6 +1,5 @@
 exercises-FrontendFramework
 ===========================
-
 关于前端框架的一些练习项目。
 
 1. Angular -Contacts
@@ -64,15 +63,21 @@ exercises-FrontendFramework
 		- 描述：点击上下按钮增减投票数，低于0票时显示红色样式
 		- 增加唯一标识 id
 
-## 连接数据库 
 
-1. Firebase
-	- 引入： `new Firebase('https://[url]');`
-	- update()
-	- on('value', fn)
-- newItem
-- vote
-- sort
+## 连接数据库 －Firebase
+	- [官网](https://www.firebase.com/)
+	- 安装： 
+		- `npm install firebase`
+	- 特性
+		- Realtime Database
+			- 主动推送，是基于websocket的吗？
+		- stored as JSON objects.
+	- 方法
+		- 引入： `new Firebase('https://react-vote.firebaseio.com/);`
+		- 监听： on('value', fn);
+		- 新增： .push();
+		- 更新： .update();
+		- 过滤： .child().
 
 
 ## 资源
@@ -84,8 +89,8 @@ exercises-FrontendFramework
 
 201407
 
-### About
-- A simple Todos which is able to add items, delete items and filter items.
+### 描述
+- 一个简易的 todos 应用，可增加项目、删除项目、过滤项目。
 
 ### Tech Points
 - BackboneJS

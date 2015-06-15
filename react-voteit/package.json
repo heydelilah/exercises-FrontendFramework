@@ -10,6 +10,7 @@
   "license": "ISC",
   "devDependencies": {
     "browserify": "^10.2.4",
+    "firebase": "^2.2.7",
     "gulp": "^3.9.0",
     "gulp-browserify": "^0.5.1",
     "gulp-concat": "^2.5.2",

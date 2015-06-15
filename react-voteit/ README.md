@@ -45,25 +45,27 @@ voteit
 	- uniq();
 	- findIndex(array, {attr: value}); 返回index;
 	- pull() 删除数组里的某个值.
+	- sortBy();
+
+		var sorted = _.sortBy(items, function(n){
+			return -n.number;
+		})
 
 
-## 连接数据库 
-
-1. Firebase
+## 连接数据库 －Firebase
 	- [官网](https://www.firebase.com/)
-	- 安装： `npm install firebase`
+	- 安装： 
+		- `npm install firebase`
 	- 特性
 		- Realtime Database
 			- 主动推送，是基于websocket的吗？
 		- stored as JSON objects.
-	- 使用
-		- 引入： `new Firebase('https://[url]');`
-		- update()
-		- on('value', fn)
-- newItem
-- vote
-- sort
-
+	- 方法
+		- 引入： `new Firebase('https://react-vote.firebaseio.com/');`
+		- 监听： on('value', fn);
+		- 新增： .push();
+		- 更新： .update();
+		- 过滤： .child().
 
 ## 资源
 
