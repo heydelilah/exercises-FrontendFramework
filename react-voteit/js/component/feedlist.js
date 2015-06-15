@@ -7,11 +7,11 @@ var FeedList = React.createClass({
 
 		var listItems = [];
 		for (var i = 0; i < data.length; i++) {
-			listItems.push(<FeedItem data={data[i]} />)
+			listItems.push(<FeedItem data={data[i]} onVote={this.props.onVote}/>)
 		};
 
 		return (
-			<ul className="list-group"> {listItems}	</ul>
+			<ul className="list-group mt30"> {listItems}	</ul>
 		)
 	}
 })

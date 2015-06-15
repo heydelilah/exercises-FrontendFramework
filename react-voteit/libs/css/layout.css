@@ -31,3 +31,16 @@
 .color-grey{
 	color: #999;
 }
+
+.mt30{
+	margin-top: 30px;
+}
+
+.badge-success{
+	color: green;
+	background-color: #fff;
+}
+.badge-danger{
+	color: red;
+	background-color: #fff;
+}
