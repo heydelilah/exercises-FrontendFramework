@@ -26,10 +26,10 @@ voteit
 ## 添加事件
 
 1. 顶级模块与子类模块的通信：
-	- 和 <AddBtn> 的通信： isShowBtn, onButtonClick();
-	- 和 <FeedForm> 的通信： isShowForm;
-	- 和 <FeedItem> <FeedList> 的通信：：onVote();	
-	- 和 <FeedForm> 的通信： onNewItem().
+	- 和 `<AddBtn>` 的通信： isShowBtn, onButtonClick();
+	- 和 `<FeedForm>` 的通信： isShowForm;
+	- 和 `<FeedItem>` `<FeedList>` 的通信：：onVote();	
+	- 和 `<FeedForm>` 的通信： onNewItem().
 
 2. 交互
 	1. 按钮
